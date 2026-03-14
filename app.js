@@ -1,5 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
+const session = require("express-session");
+const passport = require("passport");
+
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -13,10 +17,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-require("dotenv").config();
-const session = require("express-session");
-const passport = require("passport");
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
