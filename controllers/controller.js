@@ -41,6 +41,17 @@ module.exports = {
         if (err) return next(err);
         res.redirect("/");
         });
+    },
+
+    joinClubGet: async (req,res) => {
+        res.render("auth/passcode")
+    },
+
+    joinClubPost: async (req,res) => {
+        const { passcode } = req.body;
+        if (passcode === "secret123") {
+            await pool.query(`UPDATE "user" SET membership_status = true WHERE id = $1`, [req.user.id])
+        }
     }
 
 }
