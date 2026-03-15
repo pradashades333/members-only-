@@ -47,11 +47,38 @@ module.exports = {
         res.render("auth/passcode")
     },
 
-    joinClubPost: async (req,res) => {
-        const { passcode } = req.body;
-        if (passcode === "secret123") {
-            await pool.query(`UPDATE "user" SET membership_status = true WHERE id = $1`, [req.user.id])
+    joinClubPost: async (req, res, next) => {
+        try {
+            const { passcode } = req.body;
+            if (passcode === "secret123") {
+                await pool.query(`UPDATE "user" SET membership_status = true WHERE id = $1`, [req.user.id]);
+            }
+            res.redirect("/");
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    newMessageGet: async (req,res) => {
+        res.render("/message")
+    },
+
+    newMessagePost: async (req,res, next) => {
+        try {
+            const { title, text } = req.body;
+            await pool.query("INSERT INTO message (title, text, user_id) VALUES ($1, $2, $3)", [title, text, req.user.id])
+            res.redirect("/")
+        } catch (err) {
+            next(err)
+        }
+    },
+
+    deleteMessage: async (req, res, next) => {
+        try {
+            await pool.query("DELETE FROM message WHERE id = $1", [req.params.id]);
+            res.redirect("/");
+        } catch (err) {
+            next(err);
         }
     }
-
 }
