@@ -4,7 +4,8 @@ const app = express();
 const session = require("express-session");
 const passport = require("passport");
 require("./db/passport");
-
+const indexRouter = require("./routes/index");
+app.use("/", indexRouter);
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
