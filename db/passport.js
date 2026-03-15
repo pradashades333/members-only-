@@ -19,8 +19,10 @@ passport.use(new LocalStrategy({ usernameField: "email" }, async (email, passwor
         } else{
             return(done(null, user))
         }
-
     } catch (err) {
         return done(err);
     }
 }));
+
+
+module.exports = passport;
