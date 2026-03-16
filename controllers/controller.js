@@ -6,7 +6,7 @@ module.exports = {
     index: async (req, res, next) => {
         try{
         const {rows} = await pool.query("SELECT * FROM message")
-        res.render("message/index", {messages:rows})
+        res.render("index", {messages:rows})
         } catch(err){
             next(err)
         }
