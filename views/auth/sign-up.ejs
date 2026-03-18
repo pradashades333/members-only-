@@ -4,23 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .signup-box {
+            background-color: white;
+            border: 2px solid darkblue;
+            border-radius: 8px;
+            padding: 30px 40px;
+            width: 300px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: darkblue;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: darkblue;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid darkblue;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        input[type="submit"]:hover {
+            background-color: navy;
+        }
+
+        .login-link {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .login-link a {
+            color: darkblue;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <form action = "/sign-up" method="POST">
-            <label for = "first_name">First Name:</label>
-            <input type = "text" id = "first_name" name = "first_name">
-            <label for = "last_name">Last Name:</label>
-            <input type = "text" id = "last_name" name = "last_name">
-            <label for = "email">Email:</label>
-            <input type = "email" id = "email" name = "email">
-            <label for = "password">Password:</label>
-            <input type = "password" id = "password" name = "password">
-            <label for = "confirmPassword">Confirm Password:</label>
-            <input type = "password" id = "confirmPassword" name = "confirmPassword">
-            <input type="submit" value="Sign Up">     
-        </form>
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <form action="/sign-up" method="POST">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name">
 
-    </div>  
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+
+            <input type="submit" value="Sign Up">
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="/log-in">Log In</a>
+        </div>
+    </div>
 </body>
 </html>
