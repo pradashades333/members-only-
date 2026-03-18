@@ -67,7 +67,7 @@
                 <p><b>Posted:</b> <%= message.created_at %></p>
             <% } %>
 
-            <% if (user && user.is_admin) { %>
+            <% if (user) { %>
                 <form action="/message/<%= message.id %>/delete" method="POST">
                     <button type="submit">Delete</button>
                 </form>
