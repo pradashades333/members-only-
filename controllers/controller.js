@@ -60,7 +60,7 @@ module.exports = {
     },
 
     newMessageGet: async (req,res) => {
-        res.render("/message")
+        res.render("message/new")
     },
 
     newMessagePost: async (req,res, next) => {
