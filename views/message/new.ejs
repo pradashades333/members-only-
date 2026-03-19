@@ -4,16 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Message</title>
+    <style>
+        body {
+            background-color: mediumpurple;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-box {
+            background-color: white;
+            border: 2px solid indigo;
+            border-radius: 8px;
+            padding: 30px 40px;
+            width: 400px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: indigo;
+            margin-bottom: 4px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid indigo;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid indigo;
+            border-radius: 4px;
+            box-sizing: border-box;
+            height: 100px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: indigo;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkviolet;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.9em;
+        }
+
+        .back-link a {
+            color: indigo;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <form action = "/new-message" method = "POST">
-            <label for = "title">Title:</label>
-            <input type = "text" id = "title" name = "title">
-            <label for = "text">Text:</label>
-            <textarea id = "text" name = "text"> </textarea>
-            <input type="submit" value="Send">           
+    <div class="form-box">
+        <h1 style="color: indigo;">New Message</h1>
+        <form action="/new-message" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+
+            <label for="text">Message:</label>
+            <textarea id="text" name="text"></textarea>
+
+            <input type="submit" value="Send">
         </form>
+        <div class="back-link">
+            <a href="/">Back to Home</a>
+        </div>
     </div>
 </body>
 </html>
