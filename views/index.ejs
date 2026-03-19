@@ -8,11 +8,15 @@
         body {
             background-color: mediumpurple;
             font-family: Arial;
+            margin: 0;
+            padding: 20px;
         }
 
         h1 {
-            color: indigo;
+            color: white;
             text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
         .messages-container {
@@ -57,14 +61,34 @@
 
         .nav a {
             margin: 5px;
-            color: indigo;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.4);
+            margin: 10px auto;
+            width: 80%;
         }
 
         button {
-            background-color: red;
+            background-color: crimson;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+
+        button:hover {
+            background-color: darkred;
         }
     </style>
 </head>
