@@ -96,7 +96,8 @@
             <input type="text" id="title" name="title">
 
             <label for="text">Message:</label>
-            <textarea id="text" name="text"></textarea>
+            <textarea id="text" name="text" maxlength="300"></textarea>
+            <div id="char-counter" style="text-align:right; font-size:0.8em; color:#888; margin-top:-10px; margin-bottom:12px;">0 / 300</div>
 
             <input type="submit" value="Send">
         </form>
@@ -104,5 +105,14 @@
             <a href="/">Back to Home</a>
         </div>
     </div>
+    <script>
+        const textarea = document.getElementById('text');
+        const counter = document.getElementById('char-counter');
+        textarea.addEventListener('input', () => {
+            const len = textarea.value.length;
+            counter.textContent = len + ' / 300';
+            counter.style.color = len >= 270 ? 'crimson' : '#888';
+        });
+    </script>
 </body>
 </html>
