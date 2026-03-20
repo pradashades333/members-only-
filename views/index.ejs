@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members Only</title>
     <style>
+        * { box-sizing: border-box; }
+
         body {
-            background-color: mediumpurple;
+            background: linear-gradient(135deg, mediumpurple, indigo);
+            min-height: 100vh;
             font-family: Arial;
             margin: 0;
             padding: 20px;
@@ -15,76 +18,85 @@
         h1 {
             color: white;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-size: 1.8em;
             margin-bottom: 5px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .nav a {
+            margin: 0 8px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .nav a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            margin: 12px auto;
+            width: 80%;
         }
 
         .messages-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             padding: 10px;
         }
 
         .message-box {
             background-color: white;
-            border: 2px solid indigo;
+            border-left: 4px solid indigo;
             border-radius: 8px;
             padding: 15px 20px;
-            width: 500px;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+            width: 520px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
         .message-box h2 {
             margin: 0 0 8px 0;
             color: indigo;
-            font-size: 1.1em;
+            font-size: 1.05em;
         }
 
         .message-box p {
             margin: 4px 0;
+            color: #333;
+            font-size: 0.95em;
+            line-height: 1.5;
         }
 
         .message-meta {
-            font-size: 0.85em;
-            color: gray;
+            font-size: 0.8em;
+            color: #888;
             margin-top: 10px;
             border-top: 1px solid #eee;
             padding-top: 8px;
-        }
-
-        .nav {
-            text-align: center;
-            margin: 10px;
-        }
-
-        .nav a {
-            margin: 5px;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .nav a:hover {
-            text-decoration: underline;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.4);
-            margin: 10px auto;
-            width: 80%;
         }
 
         button {
             background-color: crimson;
             color: white;
             border: none;
-            padding: 5px 12px;
+            padding: 4px 12px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.8em;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -98,7 +110,7 @@
 
     <div class="nav">
         <% if (user) { %>
-            <a href="/new-message">+ Create new message</a> |
+            <a href="/new-message">+ New Message</a> |
             <a href="/log-out">Log Out</a>
         <% } else { %>
             <a href="/sign-up">Sign Up</a> |
@@ -122,7 +134,7 @@
             <% } %>
 
             <% if (user) { %>
-                <form action="/message/<%= message.id %>/delete" method="POST" style="margin-top: 10px;">
+                <form action="/message/<%= message.id %>/delete" method="POST">
                     <button type="submit">Delete</button>
                 </form>
             <% } %>
