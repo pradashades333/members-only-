@@ -111,6 +111,9 @@
     <div class="nav">
         <% if (user) { %>
             <a href="/new-message">+ New Message</a> |
+            <% if (!user.membership_status) { %>
+                <a href="/join-club">Join Club</a> |
+            <% } %>
             <a href="/log-out">Log Out</a>
         <% } else { %>
             <a href="/sign-up">Sign Up</a> |
@@ -123,6 +126,10 @@
             Welcome back, <b><%= user.first_name %></b>!
         </p>
     <% } %>
+
+    <p style="text-align:center; color:rgba(255,255,255,0.6); font-size:0.85em; margin: 4px 0;">
+        <%= messages.length %> message<%= messages.length !== 1 ? 's' : '' %>
+    </p>
 
     <hr>
 
@@ -143,7 +150,7 @@
             <% } %>
 
             <% if (user) { %>
-                <form action="/message/<%= message.id %>/delete" method="POST">
+                <form action="/message/<%= message.id %>/delete" method="POST" onsubmit="return confirm('Delete this message?')">
                     <button type="submit">Delete</button>
                 </form>
             <% } %>
