@@ -118,9 +118,18 @@
         <% } %>
     </div>
 
+    <% if (user) { %>
+        <p style="text-align:center; color:rgba(255,255,255,0.85); margin: 4px 0; font-size:0.95em;">
+            Welcome back, <b><%= user.first_name %></b>!
+        </p>
+    <% } %>
+
     <hr>
 
     <div class="messages-container">
+    <% if (messages.length === 0) { %>
+        <p style="color:rgba(255,255,255,0.7); font-style:italic; margin-top:30px;">No messages yet. Be the first to post!</p>
+    <% } %>
     <% messages.forEach(message => { %>
         <div class="message-box">
             <h2><%= message.title %></h2>
