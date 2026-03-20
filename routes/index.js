@@ -13,5 +13,6 @@ router.post("/join-club", controller.joinClubPost);
 router.get("/new-message", controller.newMessageGet);
 router.post("/new-message", controller.newMessagePost);
 router.post("/message/:id/delete", controller.deleteMessage);
+router.post("/message/:id/like", controller.toggleLike);
 
 module.exports = router
