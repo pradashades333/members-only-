@@ -4,10 +4,26 @@ const bcrypt = require("bcryptjs")
 
 module.exports = {
     index: async (req, res, next) => {
-        try{
-        const {rows} = await pool.query("SELECT * FROM message")
-        res.render("index", {messages:rows})
-        } catch(err){
+        try {
+            const { rows: messages } = await pool.query("SELECT * FROM message")
+            const { rows: likeCounts } = await pool.query("SELECT message_id, COUNT(*) AS count FROM likes GROUP BY message_id")
+            const userId = req.user ? req.user.id : null;
+            const { rows: userLikes } = userId
+                ? await pool.query("SELECT message_id FROM likes WHERE user_id = $1", [userId])
+                : { rows: [] }
+
+            const likeMap = {}
+            likeCounts.forEach(l => likeMap[l.message_id] = parseInt(l.count))
+            const userLikeSet = new Set(userLikes.map(l => l.message_id))
+
+            const messagesWithLikes = messages.map(m => ({
+                ...m,
+                like_count: likeMap[m.id] || 0,
+                user_liked: userLikeSet.has(m.id)
+            }))
+
+            res.render("index", { messages: messagesWithLikes })
+        } catch(err) {
             next(err)
         }
     },
@@ -76,6 +92,22 @@ module.exports = {
     deleteMessage: async (req, res, next) => {
         try {
             await pool.query("DELETE FROM message WHERE id = $1", [req.params.id]);
+            res.redirect("/");
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    toggleLike: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const userId = req.user.id;
+            const { rows } = await pool.query("SELECT * FROM likes WHERE user_id = $1 AND message_id = $2", [userId, id])
+            if (rows.length > 0) {
+                await pool.query("DELETE FROM likes WHERE user_id = $1 AND message_id = $2", [userId, id])
+            } else {
+                await pool.query("INSERT INTO likes (user_id, message_id) VALUES ($1, $2)", [userId, id])
+            }
             res.redirect("/");
         } catch (err) {
             next(err);
