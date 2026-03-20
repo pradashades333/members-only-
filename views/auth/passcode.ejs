@@ -3,15 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passcode</title>
+    <title>Join Club</title>
+    <style>
+        body {
+            background-color: mediumpurple;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .passcode-box {
+            background-color: white;
+            border: 2px solid indigo;
+            border-radius: 8px;
+            padding: 30px 40px;
+            width: 300px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: indigo;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: indigo;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid indigo;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: indigo;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkviolet;
+        }
+
+        .back-link {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .back-link a {
+            color: indigo;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <form action = "/join-club" method = "POST">
-            <label for = "passcode">Passcode:</label>
-            <input type = "password" id = "passcode" name = "passcode">
-            <input type="submit" value="Submit">           
+    <div class="passcode-box">
+        <h1>Join the Club</h1>
+        <form action="/join-club" method="POST">
+            <label for="passcode">Passcode:</label>
+            <input type="password" id="passcode" name="passcode">
+            <input type="submit" value="Submit">
         </form>
+        <div class="back-link">
+            <a href="/">Back to Home</a>
+        </div>
     </div>
 </body>
 </html>
