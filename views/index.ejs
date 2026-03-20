@@ -102,6 +102,31 @@
         button:hover {
             background-color: darkred;
         }
+
+        .like-btn {
+            background-color: #eee;
+            color: #555;
+            border: 1px solid indigo;
+            padding: 5px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.15s ease;
+        }
+
+        .like-btn:hover {
+            background-color: #ddd;
+            color: indigo;
+        }
+
+        .like-btn.liked {
+            background-color: indigo;
+            color: white;
+        }
+
+        .like-btn.liked:hover {
+            background-color: darkviolet;
+        }
     </style>
 </head>
 <body>
@@ -152,8 +177,8 @@
             <div style="display:flex; align-items:center; gap:10px; margin-top:10px;">
                 <% if (user) { %>
                     <form action="/message/<%= message.id %>/like" method="POST" style="margin:0;">
-                        <button type="submit" style="background:<%= message.user_liked ? 'indigo' : '#eee' %>; color:<%= message.user_liked ? 'white' : '#555' %>; border:1px solid indigo; padding:4px 12px; border-radius:4px; cursor:pointer; font-size:0.8em;">
-                            ♥ <%= message.like_count %>
+                        <button type="submit" class="like-btn <%= message.user_liked ? 'liked' : '' %>">
+                            ♥ <%= message.like_count %> <%= message.user_liked ? 'Liked' : 'Like' %>
                         </button>
                     </form>
                     <form action="/message/<%= message.id %>/delete" method="POST" onsubmit="return confirm('Delete this message?')" style="margin:0;">
