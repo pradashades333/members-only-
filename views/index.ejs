@@ -149,11 +149,20 @@
                 </div>
             <% } %>
 
-            <% if (user) { %>
-                <form action="/message/<%= message.id %>/delete" method="POST" onsubmit="return confirm('Delete this message?')">
-                    <button type="submit">Delete</button>
-                </form>
-            <% } %>
+            <div style="display:flex; align-items:center; gap:10px; margin-top:10px;">
+                <% if (user) { %>
+                    <form action="/message/<%= message.id %>/like" method="POST" style="margin:0;">
+                        <button type="submit" style="background:<%= message.user_liked ? 'indigo' : '#eee' %>; color:<%= message.user_liked ? 'white' : '#555' %>; border:1px solid indigo; padding:4px 12px; border-radius:4px; cursor:pointer; font-size:0.8em;">
+                            ♥ <%= message.like_count %>
+                        </button>
+                    </form>
+                    <form action="/message/<%= message.id %>/delete" method="POST" onsubmit="return confirm('Delete this message?')" style="margin:0;">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } else { %>
+                    <span style="font-size:0.85em; color:#888;">♥ <%= message.like_count %></span>
+                <% } %>
+            </div>
         </div>
     <% }) %>
     </div>
